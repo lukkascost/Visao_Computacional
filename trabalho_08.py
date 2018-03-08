@@ -7,10 +7,10 @@ histogram = np.zeros(256)
 
 for i in range(256):
     histogram[i] = len(img[img == i])
-plt.plot(histogram)
+# plt.bar([x for x in range(256)], histogram)
 minim = 0
 maxim = 0
-cut = 10
+cut = 400
 for i, j in enumerate(histogram):
     if j < cut:
         pass
@@ -26,13 +26,13 @@ for i in range(histogram.shape[0] - 1, 0, -1):
 
 img_realce = img - minim
 img_realce = img_realce.astype(float) / (maxim - minim)
-img_realce = np.multiply(img_realce, img).astype(np.uint8)
+img_realce = np.multiply(img_realce, 255).astype(np.uint8)
 
 histogram_equalized = np.zeros(256)
 
 for i in range(256):
     histogram_equalized[i] = len(img_realce[img_realce == i])
-plt.plot(histogram_equalized)
+plt.bar([x for x in range(256)], histogram_equalized)
 
 plt.show()
 
