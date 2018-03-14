@@ -22,7 +22,7 @@ def convolution3x3(img, mask):
     return result
 
 
-img = cv2.imread("img/01.jpg", 0)
+img = cv2.imread("img/lena.png", 0)
 
 ph_mask = np.matrix([[-1, 0, 1], [-1, 0, 1], [-1, 0, 1]])
 pv_mask = np.matrix([[-1, -1, -1], [0, 0, 0], [1, 1, 1]])
@@ -30,10 +30,7 @@ ph = convolution3x3(img, ph_mask)
 pv = convolution3x3(img, pv_mask)
 prewit = np.abs(ph) + np.abs(pv)
 
-cv2.imshow("my img", img)
-cv2.imshow("ph", ph)
-cv2.imshow("pv", pv)
-cv2.imshow("prewit", prewit)
+cv2.imwrite("img/TRABALHO_05/LENA_ALGORITMO_PH.png", ph)
+cv2.imwrite("img/TRABALHO_05/LENA_ALGORITMO_PV.png", pv)
+cv2.imwrite("img/TRABALHO_05/LENA_ALGORITMO_PREWIT.png", prewit)
 
-cv2.waitKey(0)
-cv2.destroyAllWindows()

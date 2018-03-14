@@ -22,7 +22,7 @@ def convolution3x3(img, mask):
     return result
 
 
-img = cv2.imread("img/01.jpg", 0)
+img = cv2.imread("img/lena.png", 0)
 
 sh_mask = np.matrix([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
 sv_mask = np.matrix([[-1, -2, -1], [0, 0, 0], [1, 2, 1]])
@@ -30,10 +30,6 @@ sh = convolution3x3(img, sh_mask)
 sv = convolution3x3(img, sv_mask)
 sobel = np.abs(sh) + np.abs(sv)
 
-cv2.imshow("my img", img)
-cv2.imshow("sh", sh)
-cv2.imshow("sv", sv)
-cv2.imshow("sobel", sobel)
-
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+cv2.imwrite("img/TRABALHO_06/LENA_ALGORITMO_SH.png", sh)
+cv2.imwrite("img/TRABALHO_06/LENA_ALGORITMO_SV.png", sv)
+cv2.imwrite("img/TRABALHO_06/LENA_ALGORITMO_SOBEL.png", sobel)
