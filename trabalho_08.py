@@ -7,10 +7,10 @@ histogram = np.zeros(256)
 
 for i in range(256):
     histogram[i] = len(img[img == i])
-# plt.bar([x for x in range(256)], histogram)
+#plt.bar([x for x in range(256)], histogram)
 minim = 0
 maxim = 0
-cut = 400
+cut = 20
 for i, j in enumerate(histogram):
     if j < cut:
         pass
@@ -34,10 +34,5 @@ for i in range(256):
     histogram_equalized[i] = len(img_realce[img_realce == i])
 plt.bar([x for x in range(256)], histogram_equalized)
 
-plt.show()
-
-cv2.imshow("normal", img)
-cv2.imshow("realce", img_realce)
-
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+plt.savefig("img/TRABALHO_08/LENA_REALCE_HISTOGRAM.png")
+cv2.imwrite("img/TRABALHO_08/LENA_REALCE.png", img_realce)
