@@ -1,8 +1,50 @@
+from Queue import Queue
+
 import cv2
 import numpy as np
 
 orig = cv2.imread("img/fill.png", 0)
-print orig.shape
+seed = (400, 20)
 
-img = cv2.floodFill(orig, None, (400,20), 0)
-cv2.imwrite("result.png", orig)
+line = orig.shape[0]
+col = orig.shape[1]
+
+result = np.zeros(orig.shape)
+result[int(line / 2), int(col / 2)] = 255
+parar = 0
+continuar = 1
+it = 0
+while continuar != parar:
+    continuar = parar
+    parar = 0
+    for x in range(1,orig.shape[0]-1):
+        for y in range(1,orig.shape[1]-1):
+            if result[x, y] == 255:
+                if orig[x - 1, y - 1] > 127:
+                    result[x - 1, y - 1] = 255
+                    parar += 1
+                if orig[x - 1, y] > 127:
+                    result[x - 1, y] = 255
+                    parar += 1
+                if orig[x - 1, y + 1] > 127:
+                    result[x - 1, y + 1] = 255
+                    parar += 1
+                if orig[x , y - 1] > 127:
+                    result[x , y - 1] = 255
+                    parar += 1
+                if orig[x, y + 1] > 127:
+                    result[x , y + 1] = 255
+                    parar += 1
+                if orig[x + 1, y - 1] > 127:
+                    result[x + 1, y - 1] = 255
+                    parar += 1
+                if orig[x + 1, y] > 127:
+                    result[x + 1, y] = 255
+                    parar += 1
+                if orig[x + 1, y + 1] > 127:
+                    result[x + 1, y + 1] = 255
+                    parar += 1
+    cv2.imwrite("it/result{:04d}.png".format(it), result)
+    it+=1
+
+# img = cv2.floodFill(orig, None, seed, 0)

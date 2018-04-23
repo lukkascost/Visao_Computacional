@@ -1,10 +1,10 @@
 import cv2
 import numpy as np
 
-orig = cv2.imread("img/text.png", 0)
+orig = cv2.imread("../DataSet-Baumann/IMAGENS_RECORTADAS_30/c1_p1_00003.JPG", 0)
 img = np.copy(orig)
 n = 100
-K = 1.0
+K = 0.8
 line = img.shape[0]
 col = img.shape[1]
 
@@ -30,7 +30,7 @@ result2[result2 > 0] = 255
 result2[result2 <= 0] = 0
 
 
-cv2.imwrite("result191.jpg", result2)
+cv2.imwrite("res.jpg", result2)
 
 
 
