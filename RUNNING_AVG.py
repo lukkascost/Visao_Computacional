@@ -13,24 +13,24 @@ for i in range(1, line, 2):
     img[i] = np.flip(img[i], 0)
 array = np.reshape(img, img.size)
 
-result = np.copy(array)
+mapped = np.copy(array)
 
 for i in range(n, array.size):
-    result[i] = int(np.average(array[i - n:i]))
-result = np.reshape(result, [line, col])
+    mapped[i] = int(np.average(array[i - n:i]))
+mapped = np.reshape(mapped, [line, col])
 
 for i in range(1, line, 2):
-    result[i] = np.flip(result[i], 0)
+    mapped[i] = np.flip(mapped[i], 0)
 
-print result[0, :10]
-
-
-result2 = orig.astype(int) - (result.astype(int) * K)
-result2[result2 > 0] = 255
-result2[result2 <= 0] = 0
+print mapped[0, :10]
 
 
-cv2.imwrite("res.jpg", result2)
+result_img = orig.astype(int) - (mapped.astype(int) * K)
+result_img[result_img > 0] = 255
+result_img[result_img <= 0] = 0
+
+
+cv2.imwrite("res.jpg", result_img)
 
 
 

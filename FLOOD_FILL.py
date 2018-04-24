@@ -3,8 +3,7 @@ from Queue import Queue
 import cv2
 import numpy as np
 
-orig = cv2.imread("img/fill.png", 0)
-seed = (400, 20)
+orig = cv2.imread("img/fill2.png", 0)
 cv2.imwrite("originalImage.jpg", orig)
 
 line = orig.shape[0]
@@ -12,12 +11,12 @@ col = orig.shape[1]
 
 result = np.zeros(orig.shape)
 result[int(line / 2), int(col / 2)] = 255
-cv2.imwrite("result.png",result)
+cv2.imwrite("semente.png",result)
 parar = 0
 continuar = 1
 it = 0
 valPix = orig[int(line / 2), int(col / 2)]
-valPix = int(valPix * 0.7)
+valPix = int(valPix * 0.8)
 
 
 while continuar != parar:
