@@ -36,7 +36,7 @@ for file_index in [4,8]:
         print "\t", it
         data = Data(10, 1676, samples=3352)
         data.randomTrainingTestByPercent(np.array(quantidade_por_classe).copy(), 0.5)
-        data.params = dict(kernel_type=cv2.SVM_RBF, svm_type=cv2.SVM_C_SVC, gamma=2.0, nu=0.0, p=0.0, coef0=0, k_fold=2)
+        data.params = dict(kernel_type=cv2.SVM_SIGMOID, svm_type=cv2.SVM_C_SVC, gamma=2.0, nu=0.0, p=0.0, coef0=0, k_fold=2)
         svm = cv2.SVM()
         svm.train_auto(np.float32(data_set.atributes[data.Training_indexes]),
                        np.float32(data_set.labels[data.Training_indexes]), None, None, params=data.params)
@@ -44,6 +44,6 @@ for file_index in [4,8]:
         data.setResultsFromClassfier(results, data_set.labels[data.Testing_indexes])
         data_set.append(data)
     experiment.addDataSet(data_set,
-                          "LBP attributes with {} bits {} rounds vs SVM Kernel RBF. base numbers, 50% per class. ".format(
+                          "LBP attributes with {} bits {} rounds vs SVM Kernel SIGMOID. base numbers, 50% per class. ".format(
                               file_index, it_for_data_set))
 experiment.save("EXPERIMENTS/EXP02-LBP_SVM.gzip")
